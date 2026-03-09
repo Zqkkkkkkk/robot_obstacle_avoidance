@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-obstacle-avoidance"
+version = "0.1.0"
+description = "A Python research scaffold for comparing robot obstacle avoidance algorithms."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "GitHub Copilot" }
+]
+dependencies = [
+  "flask>=3.0",
+  "matplotlib>=3.8",
+  "pillow>=10.0",
+  "waitress>=3.0"
+]
+
+[project.scripts]
+robot-avoidance = "robot_obstacle_avoidance.cli:main"
+robot-avoidance-web = "robot_obstacle_avoidance.webapp:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+robot_obstacle_avoidance = ["templates/*.html", "static/*.css", "static/*.js"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

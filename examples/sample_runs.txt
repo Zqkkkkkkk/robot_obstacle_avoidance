@@ -1,0 +1,3 @@
+python -m robot_obstacle_avoidance --algorithm astar --scenario open_field
+python -m robot_obstacle_avoidance --algorithm apf --scenario slalom
+python -m robot_obstacle_avoidance --algorithm dwa --scenario narrow_passage --json

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Obstacle Avoidance Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css', v='20260308e') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Interactive Research Dashboard</p>
+                <h1>Robot Obstacle Avoidance Lab</h1>
+                <p class="hero-text">
+                    Explore A*, APF, and DWA in a browser-based playback environment with animated trajectories,
+                    scenario switching, and live performance metrics.
+                </p>
+            </div>
+            <div class="hero-panel">
+                <div class="hero-chip">Web visualization</div>
+                <div class="hero-chip">Trajectory playback</div>
+                <div class="hero-chip">Compare all algorithms</div>
+            </div>
+        </header>
+
+        <main class="layout-grid">
+            <section class="control-card panel-surface">
+                <div class="section-heading">
+                    <p class="section-kicker">Controls</p>
+                    <h2>Simulation setup</h2>
+                </div>
+
+                <div class="field-grid">
+                    <label class="field">
+                        <span>Scenario</span>
+                        <select id="scenario-select"></select>
+                    </label>
+
+                    <label class="field">
+                        <span>Mode</span>
+                        <select id="mode-select">
+                            <option value="single">Single algorithm</option>
+                            <option value="compare">Compare all</option>
+                        </select>
+                    </label>
+
+                    <label class="field" id="algorithm-field">
+                        <span>Algorithm</span>
+                        <select id="algorithm-select"></select>
+                    </label>
+
+                    <label class="field">
+                        <span>Simulation step dt</span>
+                        <input id="dt-input" type="number" min="0.01" step="0.01" value="0.10">
+                    </label>
+                </div>
+
+                <div class="action-row">
+                    <button id="run-button" class="primary-button">Run simulation</button>
+                    <button id="play-button" class="secondary-button">Pause</button>
+                </div>
+
+                <div class="timeline-block">
+                    <label class="field timeline-label">
+                        <span>Timeline</span>
+                        <input id="frame-slider" type="range" min="0" max="1" value="0">
+                    </label>
+                    <label class="field speed-field">
+                        <span>Playback speed</span>
+                        <input id="speed-slider" type="range" min="0.25" max="3" step="0.25" value="1">
+                    </label>
+                    <div class="timeline-meta">
+                        <span id="frame-readout">Frame 0 / 0</span>
+                        <span id="speed-readout">1.00x</span>
+                    </div>
+                </div>
+
+                <div class="obstacle-studio">
+                    <div class="section-heading compact-heading">
+                        <p class="section-kicker">Obstacle editor</p>
+                        <h2>Custom obstacle studio</h2>
+                    </div>
+
+                    <p class="tool-hint">
+                        Click before running to place a static obstacle. During playback, clicking the canvas injects a live obstacle at the current simulation time, and the placement is rejected if it overlaps any vehicle, overlaps any active obstacle, or would make the goal unreachable.
+                    </p>
+
+                    <div class="field-grid obstacle-grid">
+                        <label class="field">
+                            <span>Obstacle type</span>
+                            <select id="obstacle-type-select">
+                                <option value="circle">Circle</option>
+                                <option value="rectangle">Rectangle block</option>
+                            </select>
+                        </label>
+
+                        <label class="field" id="circle-radius-field">
+                            <span>Radius</span>
+                            <input id="obstacle-radius-input" type="number" min="0.1" step="0.05" value="0.65">
+                        </label>
+
+                        <label class="field rectangle-dimension-field">
+                            <span>Width</span>
+                            <input id="obstacle-width-input" type="number" min="0.2" step="0.1" value="1.2">
+                        </label>
+
+                        <label class="field rectangle-dimension-field">
+                            <span>Height</span>
+                            <input id="obstacle-height-input" type="number" min="0.2" step="0.1" value="0.8">
+                        </label>
+                    </div>
+
+                    <div class="action-row obstacle-actions">
+                        <button id="undo-obstacle-button" class="secondary-button" type="button">Undo last</button>
+                        <button id="clear-obstacles-button" class="secondary-button" type="button">Clear placed</button>
+                    </div>
+
+                    <div class="obstacle-list" id="obstacle-list"></div>
+                </div>
+
+                <div class="status-banner" id="status-banner">Loading simulation metadata...</div>
+            </section>
+
+            <section class="visual-card panel-surface">
+                <div class="section-heading inline-heading">
+                    <div>
+                        <p class="section-kicker">Playback</p>
+                        <h2>Scenario canvas</h2>
+                    </div>
+                    <div class="legend-row" id="legend-row"></div>
+                </div>
+                <canvas id="scene-canvas" width="920" height="620"></canvas>
+            </section>
+
+            <section class="metrics-card panel-surface">
+                <div class="section-heading">
+                    <p class="section-kicker">Metrics</p>
+                    <h2>Performance summary</h2>
+                </div>
+                <div id="metrics-grid" class="metrics-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js', v='20260308e') }}"></script>
+</body>
+</html>

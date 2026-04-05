@@ -3,7 +3,7 @@ services:
     name: robot-obstacle-avoidance
     runtime: python
     buildCommand: pip install .
-    startCommand: waitress-serve --listen=0.0.0.0:$PORT robot_obstacle_avoidance.webapp:app
+    startCommand: python -m waitress --listen=0.0.0.0:$PORT robot_obstacle_avoidance.webapp:app
     healthCheckPath: /healthz
     envVars:
       - key: PYTHON_VERSION

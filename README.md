@@ -2,6 +2,41 @@
 
 This repository is a standalone Python project for robot obstacle avoidance research and coursework. It is structured as a small simulation lab rather than a one-off script, so you can extend it into a graduation project, benchmark multiple methods, and export reproducible experiment results.
 
+## Project Timeline (Gantt)
+
+```mermaid
+gantt
+	title Robot Obstacle Avoidance Project Timeline (Jan-Apr 2026)
+	dateFormat  YYYY-MM-DD
+	axisFormat  %m/%d
+	excludes    weekends
+
+	section Research and Setup
+	Problem framing and method survey (A*, APF, DWA)      :done, r1, 2026-01-02, 2026-01-12
+	Repository scaffold and core data models              :done, r2, 2026-01-10, 2026-01-24
+	Simulation loop and baseline scenario setup           :done, r3, 2026-01-20, 2026-02-02
+
+	section Algorithm Development
+	A* planner implementation and validation              :done, a1, 2026-01-27, 2026-02-10
+	APF local avoidance and tuning                        :done, a2, 2026-02-05, 2026-02-20
+	DWA trajectory rollout and scoring                    :done, a3, 2026-02-15, 2026-03-06
+
+	section Integration and Delivery
+	Scenario benchmarking and metrics export              :done, i1, 2026-03-01, 2026-03-14
+	CLI and plotting/animation pipeline                   :done, i2, 2026-03-08, 2026-03-20
+	Documentation polish and milestone freeze             :done, milestone, 2026-03-21, 2026-03-24
+
+	section April Improvements
+	Web dashboard interaction refinement                  :active, m1, 2026-04-01, 2026-04-12
+	Dynamic obstacle handling and compare-all robustness  :active, m2, 2026-04-06, 2026-04-18
+	Performance optimization and deployment hardening     :m3, 2026-04-12, 2026-04-24
+	Regression tests and report update                    :m4, 2026-04-20, 2026-04-30
+```
+
+Milestone notes:
+- 2026-03-24: Phase-1 completion (core algorithms, simulation workflow, and reproducible outputs).
+- 2026-04: Incremental improvements focused on interactivity, robustness, and deployment quality.
+
 ## Included methods
 
 - A* grid search for global path planning
